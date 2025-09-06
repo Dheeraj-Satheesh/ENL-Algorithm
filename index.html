@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Type 2 (ENL) Reaction Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="https://satheesh-dheeraj-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer">
+                <img src="logo6.jpg" alt="Satheesh Dheeraj Portfolio Logo" />
+            </a>
+        </div>
+        <h1 class="title">Type 2 (ENL) Reaction Management</h1>
+    </header>
+
+
+
+    <!-- Main Form -->
+    <main class="container">
+        <form id="enl-form" class="card">
+            <h2 class="section-title">Patient Details</h2>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="name">Name <span class="req">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Enter full name" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age <span class="req">*</span></label>
+                    <input type="number" id="age" name="age" min="0" max="120" placeholder="Years" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="sex">Sex <span class="req">*</span></label>
+                    <select id="sex" name="sex" required>
+                        <option value="">-- Select --</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                        <option>Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="weight">Weight (kg) <span class="req">*</span></label>
+                    <input type="number" id="weight" name="weight" step="0.1" min="1" max="400" placeholder="e.g., 62.5"
+                        required />
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">Symptoms</h2>
+
+                <!-- Subcutaneous tender nodules -->
+                <div class="form-group">
+                    <label for="nodules">Subcutaneous tender nodules:</label>
+                    <select id="nodules" name="nodules">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <!-- Associated with fever -->
+                <div class="form-group">
+                    <label for="fever">Associated with fever:</label>
+                    <select id="fever" name="fever">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <!-- Other organ involvement -->
+                <div class="form-group">
+                    <label for="organs">Involvement of other organs (Nerves / Joints / Eyes / Kidney):</label>
+                    <select id="organs" name="organs">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="actions">
+                <button type="submit" class="btn primary"><i class="fa-solid fa-magnifying-glass"></i> Predict</button>
+                <button type="reset" class="btn"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                <button id="downloadPdf" type="button" class="btn ghost" disabled>
+                    <i class="fa-solid fa-file-pdf"></i> Download PDF
+                </button>
+            </div>
+        </form>
+
+        <!-- Results card -->
+        <section id="result" class="card hidden">
+            <h2 class="section-title">Assessment Summary</h2>
+            <div id="summary"></div>
+
+            <div class="prediction-box">
+                <strong>Prediction:</strong>
+                <span id="predictionText">Pending — you can plug in your logic here in <code>script.js</code>.</span>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <span>© Satheesh Dheeraj Software Solutions</span>
+        <div class="social-links">
+            <a href="https://github.com/Dheeraj-Satheesh" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/satheeshdheeraj" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/dheeraj2501" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

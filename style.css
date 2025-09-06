@@ -281,47 +281,195 @@ textarea:focus {
   border-bottom: none;
 }
 @media (max-width: 768px) {
-  .styled-table,
-  .styled-table thead,
-  .styled-table tbody,
-  .styled-table th,
-  .styled-table td,
-  .styled-table tr {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;          /* full width on mobile */
+    max-width: 100%;      /* remove max-width limitation */
+    margin: 6px 0 14px 0; /* spacing */
     display: block;
-    width: 100%;
   }
 
-  .styled-table thead {
-    display: none; /* hide table headers */
+  .actions {
+    flex-direction: column; /* buttons stack vertically */
+    gap: 10px;
   }
 
-  .styled-table tr {
-    margin-bottom: 15px;
-    border: 1px solid rgba(0,212,255,0.3);
-    border-radius: 10px;
-    padding: 10px;
-    background: rgba(0,0,0,0.5);
+  .btn {
+    width: 100%;            /* buttons full width */
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .styled-table {
+    font-size: 0.85rem;   /* smaller text */
+    display: block;        /* allow horizontal scroll */
+    overflow-x: auto;
+    white-space: nowrap;
   }
 
+  .styled-table th,
   .styled-table td {
-    text-align: right;
-    padding-left: 50%;
-    position: relative;
-    border: none;
-    border-bottom: 1px dashed rgba(0,212,255,0.2);
+    padding: 8px 10px;
+  }
+}
+@media (max-width: 768px) {
+  .card {
+    padding: 16px;
+    margin-bottom: 16px;
+    width: 95%;           /* fit nicely on mobile */
+    max-width: 100%;
   }
 
-  .styled-table td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 14px;
-    width: 45%;
-    font-weight: 600;
-    color: #00d4ff;
-    text-align: left;
+  .container {
+    padding: 15px;
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .styled-table tr:last-child td {
-    border-bottom: none;
+  .title {
+    font-size: 1.2rem;
+    left: auto;
+    transform: none;
+    text-align: center;
+    margin-top: 8px;
   }
+}
+.logo img {
+  height: 60px; /* adjust as needed */
+  width: auto;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px #00d4ff);
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    height: 45px; /* smaller on mobile */
+  }
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  padding: 12px 20px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.6);
+  border-radius: 0 0 14px 14px;
+  position: relative;
+}
+
+/* Logo */
+.logo img {
+  height: 60px;
+  width: auto;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px #00d4ff);
+}
+
+/* Centered Title */
+.nav-center {
+  position: absolute; /* only for centering text */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #00d4ff;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.9);
+  white-space: nowrap; /* prevent wrapping on small screens */
+}
+
+/* Optional right section (buttons, icons) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .logo img {
+    height: 45px;
+  }
+
+  .nav-center {
+    font-size: 1.2rem;
+    position: static; /* remove absolute on small screens */
+    transform: none;
+    margin: 8px 0 0 0;
+  }
+
+  .navbar {
+    flex-wrap: wrap; /* logo and title stack if needed */
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+  }
+}
+/* Highlight prediction */
+.prediction-title {
+    color: #ffcc00;   /* gold/yellow */
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Option box styling */
+.option-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #00bcd4;  /* cyan accent */
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+}
+
+.option-box h5 {
+    margin: 0 0 5px;
+    color: #00e5ff;   /* brighter cyan */
+    font-weight: bold;
+}
+
+.option-box ul {
+    margin: 0;
+    padding-left: 20px;
+}
+.prediction-box strong {
+    color: #ffcc00;   /* gold/yellow */
+    font-weight: bold;
+    font-size: 1.1em;
+  text-align: center;
+    text-transform: uppercase;
+}
+/* Style only the heading "Prediction:" */
+.prediction-box strong {
+    color: #ffcc00;   /* golden yellow */
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Style the actual prediction text */
+.prediction-box .prediction-text {
+    font-size: 1.4em;   /* larger than normal */
+    font-weight: bold;
+    color: #ffffff;     /* keep white text for contrast */
+    display: inline-block;
+    margin-left: 6px;
 }

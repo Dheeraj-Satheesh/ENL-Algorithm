@@ -45,7 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
             predictionBox.innerHTML = `
-                <p><strong>Prediction:</strong> <span class="prediction-text">${prediction}</span></p>
+                <p><strong class="prediction-title">Prediction:</strong> 
+                <span class="prediction-text">${prediction}</span></p>
                 ${treatmentHtml}
             `;
 
@@ -130,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             </ul>
                         </div>
                         <div class="option-box">
-                            <h5>Option A not respond → Try Option B</h5>
+                            <h5>Option A not respond then Try Option B</h5>
                             <ul>
                                 <li>Initiate Prednisolone as per standard guideline regimen.</li>
                                 <li>Once the patient is on 30 mg prednisolone, add either dexamethasone 2mg night (IM/IV) (once weekly for 3 weeks) or methylprednisolone 8 mg oral (once monthly for 3 months).</li>
@@ -138,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             </ul>
                         </div>
                         <div class="option-box">
-                            <h5>Option B not respond → Try Option C</h5>
+                            <h5>Option B not respond then Try Option C</h5>
                             <ul>
                                 <li>Initiate prednisolone as per the standard guideline course, and add minocycline 100 mg daily for 3 months, or initiate thalidomide as per guideline recommendations.</li>
                                 <li>Consider an alternative MDT regimen if indicated.</li>
@@ -242,28 +243,34 @@ document.addEventListener("DOMContentLoaded", () => {
             y = doc.lastAutoTable.finalY + 10;
         });
 
-        // Handle option boxes
+        // Handle option boxes (with wrapping)
         treatmentDiv.querySelectorAll(".option-box").forEach(box => {
             const title = box.querySelector("h5")?.innerText || "Option";
             const items = [...box.querySelectorAll("li")].map(li => li.innerText);
 
-            doc.setDrawColor(0);
-            doc.setFillColor(240, 240, 240);
-            doc.rect(12, y, 186, 8 + items.length * 6, "F");
-
             doc.setFontSize(12);
             doc.setTextColor(0, 0, 180);
-            doc.text(title, 14, y + 6);
+            doc.text(title, 14, y);
+            y += 8;
 
             doc.setTextColor(0, 0, 0);
-            let innerY = y + 12;
             items.forEach(item => {
                 doc.setFontSize(10);
-                doc.text(`• ${item}`, 18, innerY);
-                innerY += 6;
+
+                // wrap text to fit width
+                let wrappedText = doc.splitTextToSize(`• ${item}`, 170);
+                wrappedText.forEach(line => {
+                    if (y > 280) { // add page if too close to bottom
+                        doc.addPage();
+                        y = 20;
+                    }
+                    doc.text(line, 18, y);
+                    y += 6;
+                });
+                y += 2;
             });
 
-            y = innerY + 8;
+            y += 6;
         });
 
         // Save file with patient name

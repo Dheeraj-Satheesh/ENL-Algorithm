@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Type 2 (ENL) Reaction Management</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -104,12 +108,10 @@
             <div class="actions">
                 <button type="submit" class="btn primary"><i class="fa-solid fa-magnifying-glass"></i> Predict</button>
                 <button type="reset" class="btn"><i class="fa-solid fa-rotate-left"></i> Reset</button>
-                <button id="downloadPdf" type="button" class="btn ghost" disabled>
-                    <i class="fa-solid fa-file-pdf"></i> Download PDF
-                </button>
             </div>
         </form>
 
+        <!-- Results card -->
         <!-- Results card -->
         <section id="result" class="card hidden">
             <h2 class="section-title">Assessment Summary</h2>
@@ -119,7 +121,15 @@
                 <strong>Prediction:</strong>
                 <span id="predictionText"><code></code>Complete the ENL Episode....</span>
             </div>
+
+            <!-- Download button moved here -->
+            <div class="actions">
+                <button id="downloadPdf" type="button" class="btn ghost" disabled>
+                    <i class="fa-solid fa-file-pdf"></i> Download PDF
+                </button>
+            </div>
         </section>
+
     </main>
 
 

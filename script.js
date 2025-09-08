@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="option-box">
                             <h5>Option B not respond then Try Option C</h5>
                             <ul>
-                                <li>Initiate prednisolone as per the standard guideline course, and add minocycline 100 mg daily for 3 months, or initiate thalidomide as per guideline recommendations.</li>
+                                <li>Initiate prednisolone as per the standard guideline course, and add minocycline 100 mg daily for 3 months, or initiate thalidomide as per guideline recommendations. Note:Prior to initiating Thalidomide treatment, ensure strict adherence to the eligibility criteria.</li>
                                 <li>Consider an alternative MDT regimen if indicated.</li>
                                 <li>Add diazepam 10 mg or lorazepam for 2 weeks at night after 6 weeks on prednisolone (20 mg).</li>
                             </ul>
@@ -219,62 +219,115 @@ document.addEventListener("DOMContentLoaded", () => {
         const treatmentDiv = document.createElement("div");
         treatmentDiv.innerHTML = downloadBtn.dataset.treatment;
 
-        // Handle tables
-        treatmentDiv.querySelectorAll("table").forEach((table) => {
-            let headers = [];
-            table.querySelectorAll("thead th").forEach(th => headers.push(th.innerText));
+        // Loop all child nodes
+        [...treatmentDiv.children].forEach(el => {
+            if (y > 280) { // page break check
+                doc.addPage();
+                y = 20;
+            }
 
-            let rows = [];
-            table.querySelectorAll("tbody tr").forEach(tr => {
-                let row = [];
-                tr.querySelectorAll("td").forEach(td => row.push(td.innerText));
-                rows.push(row);
-            });
+            // Handle Headings
+            if (el.tagName === "H4" || el.tagName === "H5") {
+                doc.setFontSize(12);
+                doc.setTextColor(0, 0, 180);
+                let wrapped = doc.splitTextToSize(el.innerText, 180);
+                doc.text(wrapped, 14, y);
+                y += wrapped.length * 6 + 4;
+            }
 
-            doc.autoTable({
-                startY: y,
-                head: [headers],
-                body: rows,
-                theme: "grid",
-                styles: { fontSize: 10 },
-                headStyles: { fillColor: [52, 73, 94], textColor: 255 }
-            });
+            // Handle Paragraphs
+            else if (el.tagName === "P") {
+                doc.setFontSize(11);
+                doc.setTextColor(0, 0, 0);
+                let wrapped = doc.splitTextToSize(el.innerText, 180);
+                doc.text(wrapped, 14, y);
+                y += wrapped.length * 6 + 4;
+            }
 
-            y = doc.lastAutoTable.finalY + 10;
-        });
+            // Handle Tables
+            else if (el.tagName === "TABLE") {
+                let headers = [];
+                el.querySelectorAll("thead th").forEach(th => headers.push(th.innerText));
 
-        // Handle option boxes (with wrapping)
-        treatmentDiv.querySelectorAll(".option-box").forEach(box => {
-            const title = box.querySelector("h5")?.innerText || "Option";
-            const items = [...box.querySelectorAll("li")].map(li => li.innerText);
-
-            doc.setFontSize(12);
-            doc.setTextColor(0, 0, 180);
-            doc.text(title, 14, y);
-            y += 8;
-
-            doc.setTextColor(0, 0, 0);
-            items.forEach(item => {
-                doc.setFontSize(10);
-
-                // wrap text to fit width
-                let wrappedText = doc.splitTextToSize(`• ${item}`, 170);
-                wrappedText.forEach(line => {
-                    if (y > 280) { // add page if too close to bottom
-                        doc.addPage();
-                        y = 20;
-                    }
-                    doc.text(line, 18, y);
-                    y += 6;
+                let rows = [];
+                el.querySelectorAll("tbody tr").forEach(tr => {
+                    let row = [];
+                    tr.querySelectorAll("td").forEach(td => row.push(td.innerText));
+                    rows.push(row);
                 });
-                y += 2;
-            });
 
-            y += 6;
+                doc.autoTable({
+                    startY: y,
+                    head: [headers],
+                    body: rows,
+                    theme: "grid",
+                    styles: { fontSize: 10 },
+                    headStyles: { fillColor: [52, 73, 94], textColor: 255 }
+                });
+
+                y = doc.lastAutoTable.finalY + 10;
+            }
+
+            // Handle Option Boxes
+            // Handle Option Boxes
+            else if (el.classList.contains("option-box")) {
+                const title = el.querySelector("h5")?.innerText || "Option";
+                const items = [...el.querySelectorAll("li")].map(li => li.innerText);
+
+                // First, measure height needed
+                let tempY = y + 8;
+                let contentHeight = 0;
+
+                // Height for items
+                items.forEach(item => {
+                    let wrapped = doc.splitTextToSize(`• ${item}`, 170);
+                    contentHeight += wrapped.length * 6 + 4;
+                });
+
+                // Height for title + padding
+                contentHeight += 14;
+
+                // Page break check
+                if (y + contentHeight > 280) {
+                    doc.addPage();
+                    y = 20;
+                }
+
+                // Draw grey box
+                doc.setFillColor(230, 230, 230);
+                doc.rect(12, y - 4, 186, contentHeight, "F");
+
+                // Print title
+                doc.setFontSize(12);
+                doc.setTextColor(0, 0, 180);
+                doc.text(title, 16, y + 6);
+                y += 16;
+
+                // Print list items
+                doc.setTextColor(0, 0, 0);
+                items.forEach(item => {
+                    doc.setFontSize(10);
+                    let wrappedText = doc.splitTextToSize(`• ${item}`, 170);
+                    wrappedText.forEach(line => {
+                        if (y > 280) {
+                            doc.addPage();
+                            y = 20;
+                        }
+                        doc.text(line, 20, y);
+                        y += 6;
+                    });
+                    y += 2;
+                });
+
+                y += 8; // spacing after box
+            }
+
         });
 
         // Save file with patient name
         const patientName = (downloadBtn.dataset.patientName || "patient").replace(/\s+/g, "_");
         doc.save(`${patientName}_ENL_Assessment.pdf`);
     });
+
+
 });

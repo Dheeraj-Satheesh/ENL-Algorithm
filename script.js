@@ -68,13 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         <tr><th>Drug</th><th>Duration</th><th>Dosage</th><th>Frequency</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Ibuprofen</td><td>1 Week</td><td>200 mg</td><td>Twice a day</td></tr>
+                        <tr><td>Ibuprofen</td><td>1 Week</td><td>400 mg</td><td>Twice a day</td></tr>
                         <tr><td colspan="4" style="text-align:center; font-weight:bold;">OR</td></tr>
                         <tr><td>Ketoprofen</td><td>1 Week</td><td>100 mg</td><td>Twice a day</td></tr>
                     </tbody>
                 </table>
                 <h4 style="color: red;">NSAIDs (as ibuprofen or ketoprofen) if not respond then 
-                start Prednisolone 40 mg and taper it fast complete within a month</h4>
+               Start Prednisolone 1mg/kg (Maximum 40 mg) and taper it fast complete with in a month</h4>
                 <h4>Mild ENL - Option B (Prednisolone taper)</h4>
                 <table class="styled-table">
                     <thead>
@@ -113,8 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="option-box">
                             <h5>First Episode</h5>
                             <ul>
-                                <li>Start Prednisolone 40 mg (1 mg/kg) and taper over 4–5 months.</li>
-                                <li>Add NSAIDs (Ibuprofen 400 mg OD night for 2 weeks) once patient reaches 30 mg Prednisolone.</li>
+                                <li>Start Prednisolone 1 mg/kg (Maximum 60 mg) and taper it 5-6 months.</li>
+                                <li>Add NSAIDs at 30 mg prednisolone (Ibuprofen 400 mg OD night for 2 weeks).</li>
                             </ul>
                         </div>
                     `);
@@ -125,25 +125,25 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="option-box">
                             <h5>Option A</h5>
                             <ul>
-                                <li>Initiate Prednisolone as per standard guideline regimen.</li>
-                                <li>After two weeks on prednisolone (30 mg daily), add an NSAID such as ibuprofen or ketoprofen once daily for 2 weeks.</li>
-                                <li>Add diazepam 10 mg or lorazepam for 2 weeks at night after 6 weeks on prednisolone (20 mg).</li>
+                                <li>Start prednisolone 1 mg/kg (Maximum 60 mg) and taper it 5-6 months.</li>
+                                <li>At the start of prednisolone 30 mg, add NSAID such as Ibuprofen 400 mg or ketoprofen 100 mg once daily for 2 weeks.</li>
+                                <li>Add diazepam 10 mg or lorazepam 5 mg for 2 weeks at night, at the start of prednisolone (20 mg)</li>
                             </ul>
                         </div>
                         <div class="option-box">
                             <h5>Option A not respond then Try Option B</h5>
                             <ul>
-                                <li>Initiate Prednisolone as per standard guideline regimen.</li>
-                                <li>Once the patient is on 30 mg prednisolone, add either dexamethasone 2mg night (IM/IV) (once weekly for 3 weeks) or methylprednisolone 8 mg oral (once monthly for 3 months).</li>
-                                <li>Add diazepam 10 mg or lorazepam for 2 weeks at night after 6 weeks on prednisolone (20 mg).</li>
+                                <li>Start prednisolone 1 mg/kg (Maximum 60 mg) and taper it 5-6 months.</li>
+                                <li>At the start of prednisolone 30 mg, add either dexamethasone 2mg night (IM/IV) (once weekly for 3 weeks) or methylprednisolone 8 mg oral (once monthly for 3 months).</li>
+                                <li>Add diazepam 10 mg or lorazepam 5 mg for 2 weeks at night, at the start of prednisolone (20 mg).</li>
                             </ul>
                         </div>
                         <div class="option-box">
                             <h5>Option B not respond then Try Option C</h5>
                             <ul>
-                                <li>Initiate prednisolone as per the standard guideline course, and add minocycline 100 mg daily for 3 months, or initiate thalidomide as per guideline recommendations. Note:Prior to initiating Thalidomide treatment, ensure strict adherence to the eligibility criteria.</li>
+                                <li>Start prednisolone 1 mg/kg (Maximum 60 mg) and taper it 5-6 months and add minocycline 100 mg daily for 3 months, or initiate thalidomide as per guideline recommendations. Note:Prior to initiating Thalidomide treatment, ensure strict adherence to the eligibility criteria.</li>
                                 <li>Consider an alternative MDT regimen if indicated.</li>
-                                <li>Add diazepam 10 mg or lorazepam for 2 weeks at night after 6 weeks on prednisolone (20 mg).</li>
+                                <li>Add diazepam 10 mg or lorazepam 5 mg for 2 weeks at night, at the start of prednisolone (20 mg).</li>
                             </ul>
                         </div>
                     `);
